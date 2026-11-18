@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Khushi Collection</title>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#c2185b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Khushi">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<link rel="icon" href="/icon-192.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap">
+<style>
+:root{--bg:#fff7f3;--card:#fff;--tx:#2b1b22;--mu:#7a6670;--pr:#c2185b;--pr2:#ff7a59;--bd:#f1dcd8;--sh:0 10px 28px rgba(194,24,91,.16);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17101a;--card:#241a28;--tx:#f7ebf0;--mu:#b9a4af;--bd:#3a2c40;--sh:0 10px 28px rgba(0,0,0,.5)}}
+:root[data-theme="dark"]{--bg:#17101a;--card:#241a28;--tx:#f7ebf0;--mu:#b9a4af;--bd:#3a2c40;--sh:0 10px 28px rgba(0,0,0,.5)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Poppins,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.5}
+button{font:inherit;cursor:pointer;border:0}
+input,select,textarea{font:inherit;width:100%;padding:11px 13px;border-radius:12px;border:1.5px solid var(--bd);background:var(--card);color:var(--tx);margin:6px 0 10px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 5%;background:var(--card);box-shadow:0 2px 14px rgba(0,0,0,.1)}
+.logo{font-family:"Playfair Display",Georgia,serif;font-size:24px;font-weight:700;background:linear-gradient(90deg,var(--pr),var(--pr2));-webkit-background-clip:text;background-clip:text;color:transparent;margin-right:auto;cursor:pointer}
+.srch{flex:1;min-width:150px;max-width:300px;margin:0}
+.btn{background:linear-gradient(90deg,var(--pr),var(--pr2));color:#fff;padding:10px 16px;border-radius:12px;font-weight:600;box-shadow:var(--sh);transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.gh{background:transparent;color:var(--tx);box-shadow:none;border:1.5px solid var(--bd)}
+.badge{background:#fff;color:var(--pr);border-radius:99px;padding:0 7px;margin-left:6px;font-size:13px}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:20px;align-items:center;padding:36px 5%;background:radial-gradient(circle at 80% 20%,rgba(255,122,89,.28),transparent 55%)}
+.hero h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(32px,5vw,54px);line-height:1.15}
+.hero h1 span{color:var(--pr)}
+.hero p{color:var(--mu);margin:12px 0 18px}
+.perks{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;font-size:13px}
+.perks span{background:var(--card);border:1px solid var(--bd);padding:5px 12px;border-radius:99px}
+.scene{perspective:900px;height:300px;display:grid;place-items:center}
+.cube{width:150px;height:150px;position:relative;transform-style:preserve-3d;animation:spin 14s linear infinite}
+.cube i{position:absolute;inset:0;display:grid;place-items:center;font-size:68px;font-style:normal;border-radius:20px;background:linear-gradient(135deg,var(--pr),var(--pr2));box-shadow:inset 0 0 30px rgba(255,255,255,.35)}
+.cube i:nth-child(1){transform:translateZ(75px)}
+.cube i:nth-child(2){transform:rotateY(90deg) translateZ(75px)}
+.cube i:nth-child(3){transform:rotateY(180deg) translateZ(75px)}
+.cube i:nth-child(4){transform:rotateY(-90deg) translateZ(75px)}
+.cube i:nth-child(5){transform:rotateX(90deg) translateZ(75px)}
+.cube i:nth-child(6){transform:rotateX(-90deg) translateZ(75px)}
+@keyframes spin{from{transform:rotateX(-22deg) rotateY(0)}to{transform:rotateX(-22deg) rotateY(360deg)}}
+.chips{display:flex;gap:8px;flex-wrap:wrap;padding:8px 5% 0}
+.chip{padding:8px 16px;border-radius:99px;background:var(--card);border:1.5px solid var(--bd);color:var(--tx)}
+.chip.on{background:var(--pr);color:#fff;border-color:var(--pr)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:22px;padding:24px 5% 40px}
+.card{background:var(--card);border-radius:20px;overflow:hidden;box-shadow:var(--sh);transform-style:preserve-3d;transition:transform .15s ease-out}
+.pic{height:250px;display:grid;place-items:center;position:relative;overflow:hidden;background:var(--bd);cursor:pointer}
+.prod-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}.card:hover .prod-img{transform:scale(1.045)}
+.gallery-main{width:100%;height:min(58vh,520px);object-fit:contain;background:#120d14;border-radius:14px}
+.gallery-thumbs{display:flex;gap:9px;overflow-x:auto;padding:10px 0}.gallery-thumbs img{width:66px;height:82px;object-fit:cover;border-radius:9px;cursor:pointer;border:2px solid transparent}.gallery-thumbs img.active{border-color:var(--pr)}
+.gallery-nav{display:flex;gap:10px;justify-content:space-between;align-items:center;margin-top:8px}.gallery-nav button{padding:8px 14px;border-radius:10px;background:var(--bd);color:var(--tx)}
+.em{font-size:84px;display:inline-block;transform:translateZ(40px);animation:fl 3.2s ease-in-out infinite;filter:drop-shadow(0 14px 8px rgba(0,0,0,.28))}
+@keyframes fl{0%,100%{transform:translateZ(40px) translateY(0)}50%{transform:translateZ(40px) translateY(-9px)}}
+.off{position:absolute;top:10px;left:10px;background:#fff;color:var(--pr);font-size:12px;padding:3px 9px;border-radius:99px}
+.inf{padding:14px}.inf small,.mu{color:var(--mu)}.inf h3{font-size:16px;margin:2px 0 6px}
+.pr{display:flex;gap:8px;align-items:baseline;margin-bottom:10px}.pr b{font-size:19px;color:var(--pr)}.pr s{color:var(--mu);font-size:13px}
+.inf .btn{width:100%}
+.pad{padding:28px 5% 40px;max-width:800px;margin:0 auto}
+.ord{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:14px;margin-top:12px}
+.empty{text-align:center;color:var(--mu);padding:40px 5%;grid-column:1/-1}
+.ov{position:fixed;inset:0;background:rgba(20,8,20,.55);display:grid;place-items:center;z-index:40;padding:16px;overflow:auto;backdrop-filter:blur(4px)}
+.ov.m{z-index:50}
+.mod{position:relative;background:var(--card);border-radius:22px;padding:26px;width:min(430px,100%);box-shadow:0 30px 80px rgba(0,0,0,.4);animation:pop .25s}
+@keyframes pop{from{transform:scale(.9) rotateX(12deg);opacity:0}}
+.mod h2{margin-bottom:6px}
+.x{position:absolute;top:12px;right:14px;background:none;color:var(--mu);font-size:18px}
+.err{color:#e53935;font-size:14px;margin-bottom:8px}
+.sw{background:none;color:var(--pr);margin-top:12px;font-weight:600;width:100%}
+.dr{position:fixed;top:0;right:0;bottom:0;width:min(400px,100%);background:var(--card);padding:20px;padding-top:calc(20px + env(safe-area-inset-top,0px));padding-bottom:calc(20px + env(safe-area-inset-bottom,0px));overflow:auto;box-shadow:-10px 0 40px rgba(0,0,0,.3);animation:sl .25s}
+@keyframes sl{from{transform:translateX(100%)}}
+.row{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd)}
+.th{width:54px;height:54px;border-radius:12px;display:grid;place-items:center;font-size:28px;flex:none}
+.q button{width:28px;height:28px;border-radius:8px;background:var(--bd);color:var(--tx)}
+.sum{display:flex;justify-content:space-between;margin:8px 0}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#2b1b22;color:#fff;padding:11px 20px;border-radius:99px;z-index:60;max-width:92%;text-align:center}
+footer{text-align:center;color:var(--mu);padding:20px;font-size:14px}
+@media(max-width:760px){.hero{grid-template-columns:1fr}.scene{height:230px}.grid{grid-template-columns:repeat(2,1fr);gap:12px}.pic{height:190px}.em{font-size:64px}.srch{order:5;max-width:none;flex-basis:100%}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+const {useState,useRef,useEffect}=React,h=React.createElement;
+const mem={},S={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return k in mem?mem[k]:d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){mem[k]=v}}};
+async function hash(p){try{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode('kc:'+p));return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('')}catch(e){return btoa(unescape(encodeURIComponent('kc:'+p)))}}
+const API={async call(path,body,method){const t=S.get('kc_token',null);const r=await fetch('/api'+path,{method:method||(body?'POST':'GET'),headers:{'Content-Type':'application/json',...(t?{Authorization:'Bearer '+t}:{})},body:body?JSON.stringify(body):undefined});let d=null;try{d=await r.json()}catch(e){}if(!r.ok){const er=new Error((d&&d.message)||'Something went wrong, please try again');er.status=r.status;throw er}return d}};
+const inr=n=>'₹'+n.toLocaleString('en-IN');
+const CATS=['All','Saree','Kurti','Lehenga','Jewellery','Bags'];
+const IMG={
+ saree:['https://images.pexels.com/photos/32711516/pexels-photo-32711516.jpeg?auto=compress&cs=tinysrgb&w=900','https://images.pexels.com/photos/28943610/pexels-photo-28943610.jpeg?auto=compress&cs=tinysrgb&w=900'],
+ kurti:['https://images.pexels.com/photos/28213745/pexels-photo-28213745.jpeg?auto=compress&cs=tinysrgb&w=900','https://images.pexels.com/photos/35521738/pexels-photo-35521738.jpeg?auto=compress&cs=tinysrgb&w=900','https://images.pexels.com/photos/28512766/pexels-photo-28512766.jpeg?auto=compress&cs=tinysrgb&w=900'],
+ lehenga:['https://images.pexels.com/photos/36721830/pexels-photo-36721830.jpeg?auto=compress&cs=tinysrgb&w=900','https://images.pexels.com/photos/25309042/pexels-photo-25309042.jpeg?auto=compress&cs=tinysrgb&w=900'],
+ jewellery:['https://images.pexels.com/photos/32989032/pexels-photo-32989032.jpeg?auto=compress&cs=tinysrgb&w=900','https://images.pexels.com/photos/37485302/pexels-photo-37485302.jpeg?auto=compress&cs=tinysrgb&w=900','https://images.pexels.com/photos/34511063/pexels-photo-34511063.jpeg?auto=compress&cs=tinysrgb&w=900'],
+ bags:['https://images.pexels.com/photos/8575226/pexels-photo-8575226.jpeg?auto=compress&cs=tinysrgb&w=900','https://images.pexels.com/photos/33198025/pexels-photo-33198025.jpeg?auto=compress&cs=tinysrgb&w=900']
+};
+const P=[
+{id:1,n:'Banarasi Silk Saree',cat:'Saree',price:2499,old:3499,e:'🥻',c:['#f9a8d4','#fb7185'],images:IMG.saree},
+{id:2,n:'Cotton Printed Kurti',cat:'Kurti',price:799,old:1199,e:'👚',c:['#fde68a','#fb923c'],images:IMG.kurti},
+{id:3,n:'Bridal Red Lehenga',cat:'Lehenga',price:7999,old:11999,e:'👗',c:['#fca5a5','#e11d48'],images:IMG.lehenga},
+{id:4,n:'Kundan Necklace Set',cat:'Jewellery',price:1299,old:1999,e:'📿',c:['#fcd34d','#f59e0b'],images:IMG.jewellery},
+{id:5,n:'Designer Handbag',cat:'Bags',price:1599,old:2299,e:'👜',c:['#c4b5fd','#8b5cf6'],images:IMG.bags},
+{id:6,n:'Gold Jhumka Earrings',cat:'Jewellery',price:399,old:699,e:'✨',c:['#fef08a','#eab308'],images:IMG.jewellery},
+{id:7,n:'Chikankari Kurti',cat:'Kurti',price:1199,old:1699,e:'👘',c:['#a7f3d0','#10b981'],images:IMG.kurti},
+{id:8,n:'Georgette Party Saree',cat:'Saree',price:1799,old:2599,e:'🥻',c:['#93c5fd','#6366f1'],images:IMG.saree},
+{id:9,n:'Embroidered Clutch',cat:'Bags',price:699,old:999,e:'👛',c:['#fbcfe8','#ec4899'],images:IMG.bags},
+{id:10,n:'Wedding Sharara Set',cat:'Lehenga',price:4999,old:6999,e:'👗',c:['#fdba74','#ea580c'],images:IMG.lehenga}
+];
+
+function Card({p,add,onOpen}){
+  const r=useRef();
+  const mv=e=>{const el=r.current;if(!el)return;const b=el.getBoundingClientRect(),x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;el.style.transform='perspective(700px) rotateY('+(x*14)+'deg) rotateX('+(-y*14)+'deg) translateZ(6px)'};
+  const lv=()=>{if(r.current)r.current.style.transform=''};
+  return h('div',{className:'card',ref:r,onMouseMove:mv,onMouseLeave:lv},
+    h('div',{className:'pic',onClick:()=>onOpen(p)},
+      p.images&&p.images[0]?h('img',{className:'prod-img',src:p.images[0],alt:p.n,loading:'lazy'}):h('span',{className:'em'},p.e),
+      h('b',{className:'off'},Math.round((1-p.price/p.old)*100)+'% OFF')),
+    h('div',{className:'inf'},h('small',null,p.cat),h('h3',{style:{cursor:'pointer'},onClick:()=>onOpen(p)},p.n),
+      h('div',{className:'pr'},h('b',null,inr(p.price)),h('s',null,inr(p.old))),
+      h('button',{className:'btn gh',style:{width:'100%',marginBottom:8},onClick:()=>onOpen(p)},'View Photos'),
+      h('button',{className:'btn',onClick:()=>add(p.id)},'🛒 Add to Cart')));
+}
+
+function ProductGallery({p,close,add}){
+ const [index,setIndex]=useState(0);const pics=p.images||[];
+ const move=d=>setIndex(i=>(i+d+pics.length)%pics.length);
+ return h(Modal,{close},
+   h('h2',null,p.n),
+   h('p',{className:'mu',style:{marginBottom:10}},p.cat+' · '+inr(p.price)),
+   pics.length?h('img',{className:'gallery-main',src:pics[index],alt:p.n+' photo '+(index+1)}):h('div',{className:'empty'},p.e),
+   pics.length>1&&h('div',{className:'gallery-thumbs'},pics.map((src,i)=>h('img',{key:i,src,alt:p.n+' thumbnail '+(i+1),className:i===index?'active':'',onClick:()=>setIndex(i)}))),
+   pics.length>1&&h('div',{className:'gallery-nav'},h('button',{onClick:()=>move(-1)},'← Previous'),h('small',{className:'mu'},(index+1)+' / '+pics.length),h('button',{onClick:()=>move(1)},'Next →')),
+   h('button',{className:'btn',style:{width:'100%',marginTop:14},onClick:()=>{add(p.id);close()}},'🛒 Add to Cart'));
+}
+
+const Modal=({close,children,nox=close===null})=>h('div',{className:'ov m',onClick:close},
+  h('div',{className:'mod',onClick:e=>e.stopPropagation()},!nox&&h('button',{className:'x',onClick:close,'aria-label':'Close'},'✕'),children));
+
+function Auth({mode,setMode,close,onDone}){
+  const [f,sf]=useState({name:'',email:'',pw:''}),[err,se]=useState(''),[busy,sb]=useState(false);
+  const u=k=>e=>sf({...f,[k]:e.target.value});
+  const reg=mode==='register';
+  const go=async()=>{
+    se('');const em=f.email.trim().toLowerCase();
+    if(reg&&f.name.trim().length<2)return se('Please enter your name (at least 2 characters)');
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em))return se('Please enter a valid email address');
+    if(f.pw.length<6)return se('Password must be at least 6 characters');
+    sb(true);
+    try{const d=await API.call(reg?'/auth/register':'/auth/login',{name:f.name.trim(),email:em,password:f.pw});sb(false);onDone(d)}
+    catch(e){sb(false);se(e.message)}
+  };
+  const key=e=>{if(e.key==='Enter')go()};
+  return h(Modal,{close},
+    h('h2',null,reg?'✨ Create Account':'👋 Welcome Back'),
+    h('p',{className:'mu',style:{marginBottom:10}},reg?'Join Khushi Collection today':'Log in to your account'),
+    reg&&h('input',{placeholder:'Your name',value:f.name,onChange:u('name'),onKeyDown:key}),
+    h('input',{type:'email',placeholder:'Email',value:f.email,onChange:u('email'),onKeyDown:key,autoComplete:'email'}),
+    h('input',{type:'password',placeholder:'Password (min 6 characters)',value:f.pw,onChange:u('pw'),onKeyDown:key,autoComplete:reg?'new-password':'current-password'}),
+    err&&h('div',{className:'err'},err),
+    h('button',{className:'btn',style:{width:'100%'},disabled:busy,onClick:go},busy?'Please wait...':(reg?'Register':'Log In')),
+    h('button',{className:'sw',onClick:()=>setMode(reg?'login':'register')},reg?'Already have an account? Log in':'New here? Create an account'));
+}
+
+function Checkout({user,amount,ship,place,close}){
+  const [f,sf]=useState({name:user.name,phone:'',addr:'',pay:'ONLINE'}),[err,se]=useState(''),[busy,sb]=useState(false);
+  const u=k=>e=>sf({...f,[k]:e.target.value});
+  const go=()=>{
+    if(f.name.trim().length<2)return se('Please enter your name');
+    if(!/^[6-9]\d{9}$/.test(f.phone.trim()))return se('Enter a valid 10-digit mobile number');
+    if(f.addr.trim().length<10)return se('Please enter your full address with PIN code');
+    sb(true);place({...f,name:f.name.trim(),phone:f.phone.trim(),addr:f.addr.trim()},se).finally(()=>sb(false));
+  };
+  return h(Modal,{close},
+    h('h2',null,'📦 Checkout'),
+    h('p',{className:'mu',style:{marginBottom:10}},'Total: '+inr(amount)+(ship?' (delivery ₹49 included)':' (Free delivery)')),
+    h('input',{placeholder:'Full name',value:f.name,onChange:u('name')}),
+    h('input',{placeholder:'Mobile number',inputMode:'numeric',maxLength:10,value:f.phone,onChange:u('phone')}),
+    h('textarea',{rows:3,placeholder:'Full address (with PIN code)',value:f.addr,onChange:u('addr')}),
+    h('select',{value:f.pay,onChange:u('pay')},h('option',{value:'ONLINE'},'Pay Online (UPI / Cards / NetBanking)'),h('option',{value:'COD'},'Cash on Delivery')),
+    err&&h('div',{className:'err'},err),
+    h('button',{className:'btn',style:{width:'100%'},disabled:busy,onClick:go},busy?'Please wait...':'Place Order'));
+}
+
+function App(){
+  const [user,setUser]=useState(()=>S.get('kc_token',null)?S.get('kc_user',null):null);
+  const [cart,setCart]=useState(()=>S.get('kc_cart',[]));
+  const [orders,setOrders]=useState([]);
+  const [cat,setCat]=useState('All'),[q,setQ]=useState(''),[view,setView]=useState('shop'),[modal,setModal]=useState(null),[drawer,setDrawer]=useState(false),[toast,setToast]=useState(''),[done,setDone]=useState(null),[after,setAfter]=useState(false),[gm,setGm]=useState('login'),[selectedProduct,setSelectedProduct]=useState(null),[,setTick]=useState(0);
+  useEffect(()=>{S.set('kc_cart',cart)},[cart]);
+  const [inst,setInst]=useState(null);
+  useEffect(()=>{const f=e=>{e.preventDefault();setInst(e)};const g=()=>setInst(null);window.addEventListener('beforeinstallprompt',f);window.addEventListener('appinstalled',g);return()=>{window.removeEventListener('beforeinstallprompt',f);window.removeEventListener('appinstalled',g)}},[]);
+  useEffect(()=>{fetch('/api/products').then(r=>r.ok?r.json():[]).then(a=>{let ch=false;P.forEach(p=>{const x=Array.isArray(a)&&a.find(y=>y.id===p.id);if(x){p.n=x.name;p.price=x.price;p.old=x.oldPrice;ch=true}});if(ch)setTick(t=>t+1)}).catch(()=>{})},[]);
+  useEffect(()=>{if(!user)return;API.call('/orders/mine').then(setOrders).catch(e=>{if(e.status===401)logout()})},[user,view]);
+  const say=m=>{setToast(m);setTimeout(()=>setToast(''),2200)};
+  const add=id=>{setCart(c=>c.find(x=>x.id===id)?c.map(x=>x.id===id?{...x,q:x.q+1}:x):[...c,{id,q:1}]);say('Added to cart ✅')};
+  const chg=(id,d)=>setCart(c=>c.map(x=>x.id===id?{...x,q:x.q+d}:x).filter(x=>x.q>0));
+  const items=cart.map(x=>({...P.find(p=>p.id===x.id),q:x.q})).filter(i=>i.n);
+  const total=items.reduce((s,i)=>s+i.price*i.q,0),count=items.reduce((s,i)=>s+i.q,0);
+  const ship=total>0&&total<999?49:0;
+  const login=u=>{S.set('kc_token',u.token);S.set('kc_user',{name:u.name,email:u.email});setUser({name:u.name,email:u.email});say('Welcome, '+u.name+' 🎉');if(after){setAfter(false);setDrawer(false);setModal('checkout')}else setModal(null)};
+  const logout=()=>{S.set('kc_token',null);S.set('kc_user',null);setUser(null);setOrders([]);setView('shop');say('Logged out 👋')};
+  const checkout=()=>{if(!items.length)return;if(!user){setAfter(true);setModal('login');say('Please log in first');return}setModal('checkout')};
+  const finish=o=>{setOrders(a=>[o,...a]);setCart([]);setModal(null);setDrawer(false);setDone(o)};
+  const place=async(info,onErr)=>{
+    try{
+      const o=await API.call('/orders',{items:items.map(i=>({id:i.id,q:i.q})),name:info.name,phone:info.phone,addr:info.addr,pay:info.pay});
+      if(info.pay!=='ONLINE')return finish(o);
+      if(!window.Razorpay){onErr('Payment window failed to load. Check your internet and try again.');return}
+      new Razorpay({key:o.keyId,amount:o.amount,currency:'INR',order_id:o.razorpayOrderId,name:'Khushi Collection',description:'Order '+o.id,
+        prefill:{name:info.name,email:user.email,contact:info.phone},theme:{color:'#c2185b'},
+        handler:async r=>{try{finish(await API.call('/orders/verify',{orderId:o.id,razorpay_order_id:r.razorpay_order_id,razorpay_payment_id:r.razorpay_payment_id,razorpay_signature:r.razorpay_signature}))}catch(e){say(e.message)}},
+        modal:{ondismiss:()=>onErr('Payment was not completed. You can try again.')}}).open();
+    }catch(e){if(e.status===401)logout();else onErr(e.message)}
+  };
+  const list=P.filter(p=>(cat==='All'||p.cat===cat)&&p.n.toLowerCase().includes(q.trim().toLowerCase()));
+  const mine=user?orders.filter(o=>o.email===user.email):[];
+  const closeAuth=()=>{setModal(null);setAfter(false)};
+  const instBtn=inst&&h('button',{className:'btn gh',onClick:async()=>{inst.prompt();try{await inst.userChoice}catch(e){}setInst(null)}},'📲 Install App');
+  if(!user)return h('div',null,
+    h('section',{className:'hero'},
+      h('div',null,h('div',{className:'logo'},'💖 Khushi Collection'),h('h1',null,'Log in to ',h('span',null,'start shopping'),' ✨'),h('p',null,'Create a free account or log in to explore our latest collection.'),instBtn),
+      h('div',{className:'scene'},h('div',{className:'cube'},['🥻','👗','💍','👜','👚','✨'].map((e,i)=>h('i',{key:i},e))))),
+    h(Auth,{mode:gm,setMode:setGm,close:null,onDone:login}),
+    toast&&h('div',{className:'toast'},toast));
+
+  return h('div',null,
+    h('header',{className:'bar'},
+      h('div',{className:'logo',onClick:()=>setView('shop')},'💖 Khushi Collection'),
+      h('input',{className:'srch',placeholder:'🔍 Search products...',value:q,onChange:e=>{setQ(e.target.value);setView('shop')}}),
+      user?[h('button',{key:'o',className:'btn gh',onClick:()=>setView('orders')},'📦 Orders'),
+            h('button',{key:'l',className:'btn gh',onClick:logout},'Hi, '+user.name.split(' ')[0]+' · Logout')]
+          :h('button',{className:'btn',onClick:()=>setModal('login')},'Login / Sign up'),
+      instBtn,h('button',{className:'btn',onClick:()=>setDrawer(true)},'🛒 Cart',count>0&&h('span',{className:'badge'},count))),
+
+    view==='orders'
+    ?h('main',{className:'pad'},h('h2',null,'📦 Your Orders'),
+        mine.length?mine.map(o=>h('div',{className:'ord',key:o.id},
+          h('b',null,'#'+o.id),h('span',{className:'mu'},' · '+o.date),
+          o.items.map((i,k)=>h('div',{key:k},i.n+' × '+i.q+' — '+inr(i.price*i.q))),
+          h('div',{style:{marginTop:6}},h('b',null,'Total: '+inr(o.total)),h('span',{className:'mu'},' · '+o.pay+' · '+o.addr))))
+        :h('p',{className:'mu',style:{marginTop:14}},'You have no orders yet. Start shopping! 🛍️'),
+        h('button',{className:'btn',style:{marginTop:18},onClick:()=>setView('shop')},'← Continue shopping'))
+    :h('main',null,
+        h('section',{className:'hero'},
+          h('div',null,h('h1',null,'Your ',h('span',null,'Happiness'),', Our Fashion ✨'),
+            h('p',null,'Sarees, kurtis, lehengas, jewellery and bags — everything in one place at the best prices.'),
+            h('button',{className:'btn',onClick:()=>{const g=document.getElementById('shop');if(g)g.scrollIntoView({behavior:'smooth'})}},'Shop Now →'),
+            h('div',{className:'perks'},h('span',null,'🚚 Free delivery above ₹999'),h('span',null,'💵 Cash on Delivery'),h('span',null,'🔁 Easy Returns'))),
+          h('div',{className:'scene'},h('div',{className:'cube'},['🥻','👗','💍','👜','👚','✨'].map((e,i)=>h('i',{key:i},e))))),
+        h('div',{className:'chips',id:'shop'},CATS.map(c=>h('button',{key:c,className:'chip'+(cat===c?' on':''),onClick:()=>setCat(c)},c))),
+        h('div',{className:'grid'},list.length?list.map(p=>h(Card,{key:p.id,p,add,onOpen:setSelectedProduct})):h('div',{className:'empty'},'No products found 😕'))),
+
+    h('footer',null,'© 2026 Khushi Collection · Made with 💖 · Sample fashion photos: Pexels'),
+
+    drawer&&h('div',{className:'ov',onClick:()=>setDrawer(false)},
+      h('aside',{className:'dr',onClick:e=>e.stopPropagation()},
+        h('div',{className:'row',style:{justifyContent:'space-between'}},h('h2',null,'🛒 Your Cart'),h('button',{className:'btn gh',onClick:()=>setDrawer(false)},'✕')),
+        items.length?[
+          items.map(i=>h('div',{className:'row',key:i.id},
+            h('div',{className:'th',style:{background:'linear-gradient(135deg,'+i.c[0]+','+i.c[1]+')',overflow:'hidden'}},i.images&&i.images[0]?h('img',{src:i.images[0],alt:i.n,style:{width:'100%',height:'100%',objectFit:'cover'}}):i.e),
+            h('div',{style:{flex:1}},h('b',null,i.n),h('div',{className:'mu'},inr(i.price))),
+            h('div',{className:'q'},h('button',{onClick:()=>chg(i.id,-1)},'−'),' '+i.q+' ',h('button',{onClick:()=>chg(i.id,1)},'+')))),
+          h('div',{key:'s',style:{marginTop:14}},
+            h('div',{className:'sum'},h('span',null,'Subtotal'),h('span',null,inr(total))),
+            h('div',{className:'sum'},h('span',null,'Delivery'),h('span',null,ship?inr(ship):'Free')),
+            h('div',{className:'sum'},h('b',null,'Total'),h('b',null,inr(total+ship))),
+            h('button',{className:'btn',style:{width:'100%',marginTop:10},onClick:checkout},'Checkout →'))
+        ]:h('p',{className:'empty'},'Your cart is empty 🛍️'))),
+
+    selectedProduct&&h(ProductGallery,{p:selectedProduct,close:()=>setSelectedProduct(null),add}),
+    (modal==='login'||modal==='register')&&h(Auth,{mode:modal,setMode:setModal,close:closeAuth,onDone:login}),
+    modal==='checkout'&&user&&h(Checkout,{user,amount:total+ship,ship,place,close:()=>setModal(null)}),
+    done&&h(Modal,{close:()=>setDone(null)},h('div',{style:{textAlign:'center'}},
+      h('div',{style:{fontSize:64}},'🎉'),h('h2',null,'Order placed!'),
+      h('p',null,'Order ID: '+done.id),h('p',{className:'mu',style:{marginBottom:14}},inr(done.total)+' · '+done.pay),
+      h('button',{className:'btn',onClick:()=>{setDone(null);setView('orders')}},'View my orders'))),
+    toast&&h('div',{className:'toast'},toast));
+}
+if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));
+ReactDOM.createRoot(document.getElementById('root')).render(h(App));
+</script>
+</body>
+</html>
